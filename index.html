@@ -3,71 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .login-container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        .login-container h2 {
-            margin-bottom: 20px;
-        }
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .input-group label {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 10px;
-            background: #0073e6;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .login-btn:hover {
-            background: #005bb5;
-        }
-    </style>
+    <title>Accedi - Poste Italiane</title>
+    <link rel="stylesheet" href="stile.css">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Accedi</h2>
-        <form>
-            <div class="input-group">
-                <label for="username">Username</label>
+    <header>
+        <img src="logo-poste-italiane.png" alt="Logo Poste Italiane">
+        <p>Per accedere a Poste.it devi essere un utente registrato. <a href="clienti-business.html">Se sei un cliente business clicca qui</a>.</p>
+    </header>
+    <main>
+        <section id="login">
+            <h1>Accedi</h1>
+            <form action="processa-login.php" method="post">
+                <label for="username">Nome utente</label>
                 <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
+                
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="login-btn">Login</button>
-        </form>
-    </div>
+                
+                <label>
+                    <input type="checkbox" name="ricorda-username">
+                    Ricorda il mio nome utente
+                </label>
+                
+                <button type="submit">Accedi</button>
+            </form>
+            <p><a href="recupera-credenziali.html">Hai dimenticato il nome utente o la password?</a></p>
+        </section>
+        <section id="registrazione">
+            <h2>Non hai un account?</h2>
+            <p><a href="registrazione.html">Crea un account di Poste per accedere a tutti i servizi online</a></p>
+        </section>
+        <section id="posteid">
+            <h2>Accedi con PosteID</h2>
+            <p>Puoi eseguire l'accesso con l'Identità Digitale PosteID abilitato a SPID. <a href="scopri-di-piu.html">Scopri di più</a>.</p>
+            <button type="button">Accedi con PosteID</button>
+        </section>
+    </main>
+    <footer>
+        <p>© Poste Italiane 2025 - Partita IVA: 01114601006</p>
+        <a href="preferenze-cookie.html">Preferenze Cookie</a>
+    </footer>
 </body>
 </html>
