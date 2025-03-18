@@ -1,48 +1,148 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accedi - Poste Italiane</title>
-    <link rel="stylesheet" href="stile.css">
+    <title>Attenda System</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { margin: 0; overflow-x: hidden; font-family: 'Poppins', sans-serif; background-color: black; color: white; position: relative; }
+        canvas { display: block; position: absolute; top: 0; left: 0; z-index: -1; }
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+        .logo {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+        .features {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 20px;
+            text-align: center;
+            margin-top: -100px;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 15px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+        .feature-card h3 {
+            font-size: 1.8rem;
+            color: gold;
+        }
+        .cta-button {
+            margin-top: 50px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: gold;
+            background: transparent;
+            border: 2px solid gold;
+            cursor: pointer;
+            border-radius: 8px;
+            opacity: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .cta-button:hover {
+            background: gold;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="logo-poste-italiane.png" alt="Logo Poste Italiane">
-        <p>Per accedere a Poste.it devi essere un utente registrato. <a href="clienti-business.html">Se sei un cliente business clicca qui</a>.</p>
-    </header>
-    <main>
-        <section id="login">
-            <h1>Accedi</h1>
-            <form action="processa-login.php" method="post">
-                <label for="username">Nome utente</label>
-                <input type="text" id="username" name="username" required>
-                
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-                
-                <label>
-                    <input type="checkbox" name="ricorda-username">
-                    Ricorda il mio nome utente
-                </label>
-                
-                <button type="submit">Accedi</button>
-            </form>
-            <p><a href="recupera-credenziali.html">Hai dimenticato il nome utente o la password?</a></p>
-        </section>
-        <section id="registrazione">
-            <h2>Non hai un account?</h2>
-            <p><a href="registrazione.html">Crea un account di Poste per accedere a tutti i servizi online</a></p>
-        </section>
-        <section id="posteid">
-            <h2>Accedi con PosteID</h2>
-            <p>Puoi eseguire l'accesso con l'Identità Digitale PosteID abilitato a SPID. <a href="scopri-di-piu.html">Scopri di più</a>.</p>
-            <button type="button">Accedi con PosteID</button>
-        </section>
-    </main>
-    <footer>
-        <p>© Poste Italiane 2025 - Partita IVA: 01114601006</p>
-        <a href="preferenze-cookie.html">Preferenze Cookie</a>
-    </footer>
+    <nav class="absolute w-full p-5 flex justify-between items-center bg-transparent">
+        <div class="flex items-center">
+            <img src="Logo Attenda.png" alt="Attenda System Logo" class="logo">
+            <h1 class="text-white text-2xl font-bold">Attenda System</h1>
+        </div>
+    </nav>
+    
+    <canvas id="bg"></canvas>
+    
+    <div class="hero">
+        <h1 class="text-5xl font-bold opacity-0" id="title">Welcome to Attenda System</h1>
+        <p class="subtitle" id="subtitle">La soluzione migliore per la tua azienda</p>
+    </div>
+    
+    <section class="features">
+        <div class="feature-card" id="feature1">
+            <h3>✔ Timbrature Aziendali</h3>
+            <p>Registra le entrate e le uscite direttamente dal tuo dispositivo.</p>
+        </div>
+        <div class="feature-card" id="feature2">
+            <h3>✔ Buste Paga</h3>
+            <p>Accedi alle tue buste paga in pochi click, in qualsiasi momento.</p>
+        </div>
+        <div class="feature-card" id="feature3">
+            <h3>✔ Certificati Medici</h3>
+            <p>Invia facilmente i certificati medici e gestisci le assenze.</p>
+        </div>
+        <div class="feature-card" id="feature3">
+            <h3>✔ Registri</h3>
+            <p>Possibilità di visualizzare i Registri CUD e le Buste Paga dei periodi precedenti.</p>
+    </section>
+    
+    <div class="flex justify-center mt-5">
+        <a href="https://www.studiowebdesigner.com/attenda-system" class="cta-button" id="cta-button">Inizia Ora</a>
+    </div>
+    
+    <script>
+        // GSAP Animations
+        gsap.to("#title", { duration: 1.5, opacity: 1, ease: "power2.out" });
+        gsap.to("#subtitle", { duration: 1.5, opacity: 1, delay: 1, ease: "power2.out" });
+        gsap.from(".feature-card", { opacity: 0, y: 50, stagger: 0.5, duration: 1, ease: "power2.out", delay: 2 });
+        gsap.to("#cta-button", { duration: 1.5, opacity: 1, delay: 3, ease: "power2.out" });
+        
+        // Three.js Scene Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({canvas: document.querySelector('#bg')});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.body.appendChild(renderer.domElement);
+
+        // Light
+        const light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+
+        // 3D Object
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+        camera.position.z = 50;
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            torusKnot.rotation.x += 0.01;
+            torusKnot.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
 </body>
 </html>
